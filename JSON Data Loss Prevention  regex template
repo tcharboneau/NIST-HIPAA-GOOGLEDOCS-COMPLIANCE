@@ -1,0 +1,26 @@
+{
+  "healthcare_dlp_rules": {
+    "version": "1.0",
+    "description": "Custom regular expressions for detecting ePHI in Google Docs to maintain HIPAA compliance.",
+    "rules": [
+      {
+        "name": "National Provider Identifier (NPI) Detector",
+        "hipaa_mapping": "Administrative Safeguards (§ 164.308)",
+        "description": "Detects standard 10-digit NPI numbers assigned to US healthcare providers.",
+        "regex_pattern": "\\b[1-9]\\d{9}\\b"
+      },
+      {
+        "name": "ICD-10-CM Medical Diagnosis Code Detector",
+        "hipaa_mapping": "Health Insurance Reform / Standard Code Sets",
+        "description": "Matches international clinical modification diagnosis codes (e.g., A01.0, M54.5).",
+        "regex_pattern": "\\b[A-Z][0-9][0-9A-Z](\\.[0-9A-Z]{1,4})?\\b"
+      },
+      {
+        "name": "Medical Record Number (MRN) Flexible Detector",
+        "hipaa_mapping": "Protected Health Information Identifiers (§ 164.514)",
+        "description": "Detects common institutional MRN formats (e.g., MRN-123456, MRN12345678).",
+        "regex_pattern": "(?i)\\b(mrn|medrec|patient[-_\\s]?id)[:\\s-]*[a-z0-9]{4,12}\\b"
+      }
+    ]
+  }
+}
