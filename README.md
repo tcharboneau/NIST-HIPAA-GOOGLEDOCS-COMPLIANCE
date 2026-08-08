@@ -4,6 +4,15 @@
 
 This repository contains production-ready detection rules, templates, and configurations designed to harden Google Workspace environments and integrate logs natively into Google Security Operations (formerly Chronicle SIEM) for healthcare providers under HIPAA compliance frameworks.
 
+### 🛡️ ChromeOS Enterprise USB Exfiltration Detection
+
+This repository contains a specialized **YARA-L detection rule** designed for Google Security Operations (Chronicle SIEM) to identify potential data exfiltration on **ChromeOS Enterprise** fleets. Because ChromeOS operates on a Linux-based architecture, traditional Windows-centric drive monitoring logic is ineffective. This rule natively addresses that gap by monitoring **ChromeOS XDR telemetry**, specifically tracking whenever a storage peripheral is mounted (`DEVICE_CONTROL`) and correlating it with high-volume file writes hitting the native `/media/removable/` pathing tree within a tight 5-minute temporal window. Security teams can deploy this logic to catch rogue physical data transfers in real time and trigger automated device isolation workflows via the Google Admin Console.
+
+📋 **Program Files:**
+*   [Deploy the YARA-L Rule (yara_rules/chromeos_usb_exfiltration.yar)](path/to/your/yara_rules/chromeos_usb_exfiltration.yar) — *Main detection logic file.*
+*   [Review Ingestion Mapping (config/chromeos_udm_mapping.json)](path/to/your/config/chromeos_udm_mapping.json) — *UDM normalization configurations.*
+*   [Explore Automated Playbooks (playbooks/chromeos_quarantine.yaml)](path/to/your/playbooks/chromeos_quarantine.yaml) — *SOAR playbook for automated device quarantine.*
+
 ---
 
 ## 📌 Overview
