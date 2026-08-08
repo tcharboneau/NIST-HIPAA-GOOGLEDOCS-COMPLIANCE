@@ -1,0 +1,31 @@
+rule workspace_mfa_disabled {
+  meta:
+    author = "SecOps Team"
+    description = "Alerts when 2-Step Verification (2SV) or Multi-Factor Authentication is disabled for a user or organizational unit."
+    severity = "CRITICAL"
+    mitre_attack_tactic = "Defense Evasion"
+    mitre_attack_technique = "T1556"
+
+  events:
+    // 1. Monitor Google Workspace Admin Console events
+    $workspace.metadata.vendor_name = "Google Workspace"
+    $workspace.metadata.product_name = "Admin"
+    
+    // 2. Target security and user setting modifications
+    $workspace.metadata.event_type = "USER_SETTINGS_UPDATE"
+    
+    // 3. Isolate the specific action of turning off 2SV
+    $workspace.metadata.description = /2-step verification.*disabled/i
+    
+    // 4. Capture the actor (who made the change) and the target (whose account was changed)
+    $workspace.principal.user.email_addresses = $actor_email
+    $workspace.target.user.email_addresses = $target_email
+
+  match:
+    // Group alerts by the target user over a 5-minute window
+    $target_email over 5m
+
+  condition:
+    // Trigger immediately upon detection
+    $workspace
+}  
