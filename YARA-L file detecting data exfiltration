@@ -1,0 +1,45 @@
+rule hipaa_data_exfiltration_detection {
+  meta:
+    author = "Compliance Security Operations"
+    description = "Detects anomalous HIPAA-regulated patient record exports followed by outbound data transfer from the same user session."
+    severity = "CRITICAL"
+    compliance_tag = "HIPAA-164.312" // Technical Safeguards - Access Control & Transmission Security
+    mitre_attack_technique = "T1020" // Automated Exfiltration
+
+  events:
+    // 1. Capture HIPAA data export event (e.g., Epic, Cerner, or database logs)
+    $export.metadata.event_type = "DATA_EXPORT"
+    $export.metadata.product_name = "EHR_Application"
+    $export.target.resource.attribute.labels["data_type"] = "phi" // Protected Health Information
+    $export.principal.user.userid = $user
+    $export.principal.session_id = $session
+
+    // 2. Capture a corresponding outbound network or web transfer event
+    $network.metadata.event_type = "NETWORK_CONNECTION"
+    $network.security_result.action = "ALLOW"
+    $network.target.ip = $external_ip
+    $network.principal.user.userid = $user
+    
+    // Ensure the external destination is not part of internal networks
+    not cidr.match($network.target.ip, "10.0.0.0/8")
+    not cidr.match($network.target.ip, "172.16.0.0/12")
+    not cidr.match($network.target.ip, "192.168.0.0/16")
+
+    // 3. Chronological tracking: export happens before/during network transfer
+    $export.metadata.event_timestamp.seconds <= $network.metadata.event_timestamp.seconds
+
+  match:
+    // Group activities by the user and session within a tight 15-minute window
+    $user, $session over 15m
+
+  outcome:
+    // Calculate telemetry for compliance reporting and incident response
+    $total_records_exported = sum($export.target.resource.attribute.labels["record_count"])
+    $total_bytes_transferred = sum($network.network.sent_bytes)
+    $exfiltration_destination = max($network.target.ip)
+    $analyst_summary = text.concat("User ", $user, " exported PHI and transferred ", cast.as_string($total_bytes_transferred), " bytes externally.")
+
+  condition:
+    // Trigger if a user exports more than 50 patient files and generates network traffic
+    $total_records_exported >= 50 and $network
+}
