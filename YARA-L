@@ -1,0 +1,28 @@
+rule workspace_hipaa_external_share {
+  meta:
+    author = "SecOps Team"
+    description = "Alerts when a file is shared with an unapproved, personal external email domain."
+    severity = "HIGH"
+
+  events:
+    // 1. Look specifically at Google Workspace Drive events
+    $workspace.metadata.vendor_name = "Google Workspace"
+    $workspace.metadata.product_name = "Drive"
+    
+    // 2. Look for permission changes or sharing actions
+    $workspace.metadata.event_type = "USER_RESOURCE_UPDATE_PERMISSIONS"
+    
+    // 3. Track who performed the action
+    $workspace.principal.user.email_addresses = $user_email
+    
+    // 4. Check if the target email is a personal account, not your corporate domain
+    $workspace.target.user.email_addresses = /.*@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com)$/
+
+  match:
+    // Group alerts by the specific user who shared the file
+    $user_email over 5m
+
+  condition:
+    // Trigger the alert if this event happens even once
+    $workspace
+}
