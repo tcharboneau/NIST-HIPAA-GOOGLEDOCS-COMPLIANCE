@@ -18,6 +18,7 @@ These artifacts are designed to give enterprise IT Administrators and Security O
 
 * [`yara-l-rules/`](https://github.com/tcharboneau/NIST-HIPAA-GOOGLEDOCS-COMPLIANCE/tree/main/yara-l-rules)) — Specialized detection logic for Google Security Operations (Chronicle SIEM).
 * [`dlp-policies/`](dlp-policies/) — Data Loss Prevention regex templates for the Google Workspace Admin Console.
+* 
 * ### 🛡️ Core Detection Rules (YARA-L)
 Configure these rules within Google Security Operations (Chronicle) to monitor your HIPAA scope:
 
@@ -27,6 +28,18 @@ Configure these rules within Google Security Operations (Chronicle) to monitor y
 * [MFA / 2SV Disabled Alarm](yara-l-rules/mfa_disabled.yaral) — Alerts immediately if a user disables multi-factor authentication.
 
 ---
+Google Workspace Hardening for HIPAA ComplianceThis repository contains configuration templates and detection rules to help secure Google Workspace (specifically Google Docs and Drive) for HIPAA compliance.It provides tools for both real-time prevention (Google Workspace DLP) and post-event alerting (YARA-L for SIEM log analysis).
+
+📂 Repository Structuredlp-policies/ - Contains raw Regular Expression (Regex) patterns to copy-paste directly into your Google Workspace Admin Console to block data leaks before they happen.
+
+yara-l-rules/ - Contains YARA-L rule files to deploy in your Security Operations platform (like Google Chronicle) to alert security teams if Protected Health Information (PHI) is shared improperly.
+
+🛠️ Setup Instructions1. Real-Time Prevention: Google Workspace DLP SetupTo proactively block users from typing or sharing PHI inside Google Docs:Log into your Google Workspace Admin Console.Navigate to Security > Access and data control > Data protection.Click Manage Detectors, then select Create Custom Detector.Choose Regular Expression (Regex).Open any file inside the dlp-policies/ folder of this repository, copy the pattern, and paste it into Google's regex field.Create a DLP Rule using your new detector to define an action (e.g., Block external sharing or Warn user).
+
+2. Post-Event Alerting: YARA-L Rules SetupTo monitor Google Workspace audit logs for compliance violations after they occur:Open your SIEM / Log Analytics platform (such as Google Chronicle).Navigate to the Rules Editor.Create a new rule and copy-paste the contents of the .yaral files found in the yara-l-rules/ folder of this repository.Save and activate the rules to begin receiving security alerts.
+3.
+4. ⚖️ DisclaimerThis repository is intended for security hardening reference only. Deploying these rules does not automatically guarantee legal HIPAA 
+compliance. Consult with your organization's legal and compliance officers to verify full compliance requirements.
 
 ## 🛡️ Featured Detections & Policies
 
