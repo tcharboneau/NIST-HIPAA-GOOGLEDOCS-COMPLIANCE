@@ -22,10 +22,10 @@ These artifacts are designed to give enterprise IT Administrators and Security O
 * ### 🛡️ Core Detection Rules (YARA-L)
 Configure these rules within Google Security Operations (Chronicle) to monitor your HIPAA scope:
 
-* [Detect USB Exfiltration](https://github.com/tcharboneau/NIST-HIPAA-GOOGLEDOCS-COMPLIANCE/blob/main/yara-l-rules/Detect_%20USB_%20Exfiltration) — Tracks local file movement to external media.
+* [Detect USB Exfiltration](/yara-l-rules/Detect_%20USB_%20Exfiltration) — Tracks local file movement to external media.
 * [Detect Cloud Data Loss](/yara-l-rules/Detect%20Cloud%20Data%20Loss) — Monitors high-volume sensitive document downloads.
-* [Google SIEM Base Detection](/yara-l-rules/Google%20SIEM%20Detection)) — Core endpoint and environment security baseline.
-* [MFA / 2SV Disabled Alarm](yara-l-rules/mfa_disabled.yaral) — Alerts immediately if a user disables multi-factor authentication.
+* [Google SIEM Base Detection](/yara-l-rules/Google%20SIEM%20Detection) — Core endpoint and environment security baseline.
+* [MFA / 2SV Disabled Alarm](/yara-l-rules/2-Step%20Verification%20Disabled)) — Alerts immediately if a user disables multi-factor authentication.
 
 ---
 Google Workspace Hardening for HIPAA ComplianceThis repository contains configuration templates and detection rules to help secure Google Workspace (specifically Google Docs and Drive) for HIPAA compliance.It provides tools for both real-time prevention (Google Workspace DLP) and post-event alerting (YARA-L for SIEM log analysis).
@@ -44,12 +44,12 @@ compliance. Consult with your organization's legal and compliance officers to ve
 ## 🛡️ Featured Detections & Policies
 
 ### 1. Unauthorized External File Sharing
-* **Code File:** [`workspace_hipaa_external_share.yaral`](yara-l-rules/workspace_hipaa_external_share.yaral)
+* **Code File:** [`workspace_hipaa_external_share.yaral`](/yara-l-rules/2-Step%20Verification%20Disabled))
 * **Framework Mapping:** HIPAA Security Incident Procedures (§ 164.308(a)(6)(i)) | NIST CSF 2.0 RS.MA
 * **Purpose:** Triggers a HIGH severity alert the moment an internal user shares a Google Doc, Sheet, or Drive file with an unapproved personal email domain (e.g., `@gmail.com`, `@yahoo.com`).
 
 ### 2. Multi-Factor Authentication Deactivation
-* **Code File:** [`workspace_mfa_disabled.yaral`](yara-l-rules/workspace_mfa_disabled.yaral)
+* **Code File:** [`workspace_mfa_disabled.yaral`](/yara-l-rules/2-Step%20Verification%20Disabled)
 * **Framework Mapping:** HIPAA Access Control (§ 164.312(a)(1)) | NIST CSF 2.0 PR.AA
 * **Purpose:** Triggers a CRITICAL severity alert if an administrative action or user setting disables 2-Step Verification (2SV), creating an immediate identity gap.
 
