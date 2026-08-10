@@ -34,11 +34,13 @@ Google Workspace Hardening for HIPAA ComplianceThis repository contains configur
 
 yara-l-rules/ - Contains YARA-L rule files to deploy in your Security Operations platform (like Google Chronicle) to alert security teams if Protected Health Information (PHI) is shared improperly.
 
-🛠️ Setup Instructions1. Real-Time Prevention: Google Workspace DLP SetupTo proactively block users from typing or sharing PHI inside Google Docs:Log into your Google Workspace Admin Console.Navigate to Security > Access and data control > Data protection.Click Manage Detectors, then select Create Custom Detector.Choose Regular Expression (Regex).Open any file inside the dlp-policies/ folder of this repository, copy the pattern, and paste it into Google's regex field.Create a DLP Rule using your new detector to define an action (e.g., Block external sharing or Warn user).
+🛠️ Setup Instructions
+
+1. Real-Time Prevention: Google Workspace DLP SetupTo proactively block users from typing or sharing PHI inside Google Docs:Log into your Google Workspace Admin Console. Navigate to Security > Access and data control > Data protection. Click Manage Detectors, then select Create Custom Detector.Choose Regular Expression (Regex).Open any file inside the dlp-policies/ folder of this repository, copy the pattern, and paste it into Google's regex field.Create a DLP Rule using your new detector to define an action (e.g., Block external sharing or Warn user).
 
 2. Post-Event Alerting: YARA-L Rules SetupTo monitor Google Workspace audit logs for compliance violations after they occur:Open your SIEM / Log Analytics platform (such as Google Chronicle).Navigate to the Rules Editor.Create a new rule and copy-paste the contents of the .yaral files found in the yara-l-rules/ folder of this repository.Save and activate the rules to begin receiving security alerts.
-3.
-4. ⚖️ DisclaimerThis repository is intended for security hardening reference only. Deploying these rules does not automatically guarantee legal HIPAA 
+
+3. ⚖️ DisclaimerThis repository is intended for security hardening reference only. Deploying these rules does not automatically guarantee legal HIPAA 
 compliance. Consult with your organization's legal and compliance officers to verify full compliance requirements.
 
 ## 🛡️ Featured Detections & Policies
