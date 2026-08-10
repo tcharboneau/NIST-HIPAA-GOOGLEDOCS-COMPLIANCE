@@ -24,7 +24,7 @@ Configure these rules within Google Security Operations (Chronicle) to monitor y
 
 * [Detect USB Exfiltration](https://github.com/tcharboneau/NIST-HIPAA-GOOGLEDOCS-COMPLIANCE/blob/main/yara-l-rules/Detect_%20USB_%20Exfiltration) — Tracks local file movement to external media.
 * [Detect Cloud Data Loss](/yara-l-rules/Detect%20Cloud%20Data%20Loss) — Monitors high-volume sensitive document downloads.
-* [Google SIEM Base Detection](yara-l-rules/google_siem_base.yaral) — Core endpoint and environment security baseline.
+* [Google SIEM Base Detection](/yara-l-rules/Google%20SIEM%20Detection)) — Core endpoint and environment security baseline.
 * [MFA / 2SV Disabled Alarm](yara-l-rules/mfa_disabled.yaral) — Alerts immediately if a user disables multi-factor authentication.
 
 ---
