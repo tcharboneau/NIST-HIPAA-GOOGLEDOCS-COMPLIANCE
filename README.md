@@ -25,7 +25,7 @@ Configure these rules within Google Security Operations (Chronicle) to monitor y
 * [Detect USB Exfiltration](/yara-l-rules/Detect_%20USB_%20Exfiltration) — Tracks local file movement to external media.
 * [Detect Cloud Data Loss](/yara-l-rules/Detect%20Cloud%20Data%20Loss) — Monitors high-volume sensitive document downloads.
 * [Google SIEM Base Detection](/yara-l-rules/Google%20SIEM%20Detection) — Core endpoint and environment security baseline.
-* [MFA / 2SV Disabled Alarm](/yara-l-rules/2-Step%20Verification%20Disabled)) — Alerts immediately if a user disables multi-factor authentication.
+* [MFA / 2SV Disabled Alarm](/yara-l-rules/2-Step%20Verification%20Disabled) — Alerts immediately if a user disables multi-factor authentication.
 
 ---
 Google Workspace Hardening for HIPAA ComplianceThis repository contains configuration templates and detection rules to help secure Google Workspace (specifically Google Docs and Drive) for HIPAA compliance.It provides tools for both real-time prevention (Google Workspace DLP) and post-event alerting (YARA-L for SIEM log analysis).
