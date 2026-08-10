@@ -23,7 +23,7 @@ These artifacts are designed to give enterprise IT Administrators and Security O
 Configure these rules within Google Security Operations (Chronicle) to monitor your HIPAA scope:
 
 * [Detect USB Exfiltration](https://github.com/tcharboneau/NIST-HIPAA-GOOGLEDOCS-COMPLIANCE/blob/main/yara-l-rules/Detect_%20USB_%20Exfiltration) — Tracks local file movement to external media.
-* [Detect Cloud Data Loss](yara-l-rules/data_loss.yaral) — Monitors high-volume sensitive document downloads.
+* [Detect Cloud Data Loss](/yara-l-rules/Detect%20Cloud%20Data%20Loss) — Monitors high-volume sensitive document downloads.
 * [Google SIEM Base Detection](yara-l-rules/google_siem_base.yaral) — Core endpoint and environment security baseline.
 * [MFA / 2SV Disabled Alarm](yara-l-rules/mfa_disabled.yaral) — Alerts immediately if a user disables multi-factor authentication.
 
