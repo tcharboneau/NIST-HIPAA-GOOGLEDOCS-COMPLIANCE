@@ -61,7 +61,7 @@ compliance. Consult with your organization's legal and compliance officers to ve
 * **Purpose:** Alerts security teams instantly if an administrator or compromised account modifies, disables, or deletes an active Data Loss Prevention safeguard.
 
 ### 4. Healthcare DLP Regex Identifiers
-* **Configuration File:** [`healthcare_dlp_regex_templates.json`](dlp-policies/healthcare_dlp_regex_templates.json)
+* **Configuration File:** [`healthcare_dlp_regex_templates.json`](/yara-l-rules/detect_medical_identifiers_leak.yaral)
 * **Framework Mapping:** HIPAA Protected Health Information Identifiers (§ 164.514)
 * **Purpose:** Custom regular expressions designed for the Google Admin Console to scan Google Docs for National Provider Identifiers (NPI), ICD-10 medical codes, and Medical Record Numbers (MRN).
 
