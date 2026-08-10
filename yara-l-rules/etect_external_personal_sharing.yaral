@@ -1,0 +1,4 @@
+rule google_workspace_external_personal_sharing {meta:author = "GitHub Repository Contributor"description = "Triggers a high severity alert the moment an internal user shares a Google Doc, Sheet, or Drive file with an unapproved personal email domain."framework_mapping_hipaa = "HIPAA Security Incident Procedures (§ 164.308(a)(6)(i))"framework_mapping_nist = "NIST CSF 2.0 RS.MA"severity = "HIGH"events:// Filter for Google Workspace Drive activity$log.metadata.vendor_name = "Google Workspace"$log.metadata.product_name = "Google Drive"// Target resource updates and permission changes
+($log.metadata.event_type = "USER_RESOURCE_UPDATE" or $log.metadata.event_type = "RESOURCE_PERMISSIONS_CHANGE")// Check the target user ID gaining access to the document
+$target_user = $log.target.user.userid// Regex matching unapproved personal email domains
+$target_user = /@(gmail.com|yahoo.com|outlook.com|hotmail.com|icloud.com|aol.com)/ icondition:$log}
