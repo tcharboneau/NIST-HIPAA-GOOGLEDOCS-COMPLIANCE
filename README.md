@@ -18,6 +18,13 @@ These artifacts are designed to give enterprise IT Administrators and Security O
 
 * [`yara-l-rules/`](https://github.com/tcharboneau/NIST-HIPAA-GOOGLEDOCS-COMPLIANCE/tree/main/yara-l-rules)) — Specialized detection logic for Google Security Operations (Chronicle SIEM).
 * [`dlp-policies/`](dlp-policies/) — Data Loss Prevention regex templates for the Google Workspace Admin Console.
+* ### 🛡️ Core Detection Rules (YARA-L)
+Configure these rules within Google Security Operations (Chronicle) to monitor your HIPAA scope:
+
+* [Detect USB Exfiltration](yara-l-rules/usb_exfiltration.yaral) — Tracks local file movement to external media.
+* [Detect Cloud Data Loss](yara-l-rules/data_loss.yaral) — Monitors high-volume sensitive document downloads.
+* [Google SIEM Base Detection](yara-l-rules/google_siem_base.yaral) — Core endpoint and environment security baseline.
+* [MFA / 2SV Disabled Alarm](yara-l-rules/mfa_disabled.yaral) — Alerts immediately if a user disables multi-factor authentication.
 
 ---
 
