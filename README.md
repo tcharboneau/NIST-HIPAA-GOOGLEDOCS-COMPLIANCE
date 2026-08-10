@@ -46,7 +46,7 @@ compliance. Consult with your organization's legal and compliance officers to ve
 ## 🛡️ Featured Detections & Policies
 
 ### 1. Unauthorized External File Sharing
-* **Code File:** [`workspace_hipaa_external_share.yaral`](/yara-l-rules/2-Step%20Verification%20Disabled))
+* **Code File:** [`workspace_hipaa_external_share.yaral`](/detect_external_personal_sharing.yaral)
 * **Framework Mapping:** HIPAA Security Incident Procedures (§ 164.308(a)(6)(i)) | NIST CSF 2.0 RS.MA
 * **Purpose:** Triggers a HIGH severity alert the moment an internal user shares a Google Doc, Sheet, or Drive file with an unapproved personal email domain (e.g., `@gmail.com`, `@yahoo.com`).
 
