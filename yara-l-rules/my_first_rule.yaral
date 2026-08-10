@@ -1,0 +1,16 @@
+rule sample_detection_rule {
+  meta:
+    author = "AI Assistant"
+    description = "A starter template for Google SecOps detection logic"
+    severity = "LOW"
+
+  events:
+    $event.metadata.event_type = "USER_LOGIN"
+    $event.principal.user.userid = $user
+
+  match:
+    $user over 5m
+
+  condition:
+    $event
+}
