@@ -56,7 +56,7 @@ compliance. Consult with your organization's legal and compliance officers to ve
 * **Purpose:** Triggers a CRITICAL severity alert if an administrative action or user setting disables 2-Step Verification (2SV), creating an immediate identity gap.
 
 ### 3. DLP Policy Tampering Detection
-* **Code File:** [`workspace_dlp_policy_tampering.yaral`](yara-l-rules/workspace_dlp_policy_tampering.yaral)
+* **Code File:** [`workspace_dlp_policy_tampering.yaral`](/yara-l-rules/detect_dlp_safeguard_tampering.yaral)
 * **Framework Mapping:** HIPAA Security Management Process (§ 164.308(a)(1))
 * **Purpose:** Alerts security teams instantly if an administrator or compromised account modifies, disables, or deletes an active Data Loss Prevention safeguard.
 
