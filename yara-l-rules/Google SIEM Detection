@@ -1,0 +1,17 @@
+rule generic_google_siem_edr_alert {
+  meta:
+    author = "AI Assistant"
+    description = "Generic baseline rule to flag blocked critical endpoint threats."
+    severity = "CRITICAL"
+
+  events:
+    $edr.metadata.event_type = "PROCESS_LAUNCH"
+    $edr.security_result.action = "BLOCK"
+    $edr.security_result.severity = "CRITICAL"
+    $edr.principal.host.hostname = $hostname
+
+  match:
+    $hostname over 1m
+
+  condition:
+    $edr
