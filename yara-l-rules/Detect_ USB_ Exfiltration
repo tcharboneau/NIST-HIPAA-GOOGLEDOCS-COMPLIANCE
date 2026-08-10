@@ -1,0 +1,26 @@
+rule usb_data_exfiltration {
+  meta:
+    author = "AI Assistant"
+    description = "Detects files written to a newly mounted USB mass storage device."
+    severity = "HIGH"
+
+  events:
+    // Event 1: USB Mount/Insertion
+    $mount.metadata.event_type = "DEVICE_MAINTENANCE"
+    $mount.target.device.device_type = "MASS_STORAGE"
+    $mount.principal.hostname = $hostname
+    
+    // Event 2: File Creation/Write on that same host
+    $file.metadata.event_type = "FILE_CREATION"
+    $file.target.file.full_path = /^[D-Z]:\\/ // Checks for non-OS drive letters
+    $file.principal.hostname = $hostname
+
+    // Link events by time
+    $mount.metadata.event_timestamp.seconds < $file.metadata.event_timestamp.seconds
+
+  match:
+    $hostname over 10m
+
+  condition:
+    $mount and $file
+}
