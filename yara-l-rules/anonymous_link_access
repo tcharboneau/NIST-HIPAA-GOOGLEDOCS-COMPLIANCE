@@ -1,0 +1,20 @@
+rule google_drive_public_link_created {
+  meta:
+    author = "AI Assistant"
+    description = "HIPAA Compliance: Detects a file visibility downgrade to public/anyone with link."
+    severity = "CRITICAL"
+
+  events:
+    $drive.metadata.product_name = "Google Workspace"
+    $drive.metadata.event_type = "USER_RESOURCE_UPDATE"
+    
+    // Matches Google Workspace event details for public link generation
+    $drive.target.resource.attribute.labels["new_visibility"] = "PEOPLE_WITH_LINK" or $drive.target.resource.attribute.labels["new_visibility"] = "PUBLIC"
+    $drive.principal.user.userid = $actor
+
+  match:
+    $actor over 1m
+
+  condition:
+    $drive
+}
