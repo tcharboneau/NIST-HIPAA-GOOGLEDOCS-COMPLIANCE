@@ -1,0 +1,20 @@
+rule multi_factor_auth_disabled {
+  meta:
+    author = "AI Assistant"
+    description = "Alerts when 2-Step Verification / 2FA is turned off for a user account."
+    severity = "HIGH"
+
+  events:
+    $mfa.metadata.event_type = "USER_RESOURCE_UPDATE"
+    // Fits Google Workspace Admin "TOGGLE_TWO_STEP_VERIFICATION" or Okta equivalent
+    $mfa.metadata.description = /Disable 2-Step Verification|MFA Deactivated/i
+    $mfa.target.user.userid = $target_user
+    $mfa.principal.user.userid = $actor_user
+
+  match:
+    $target_user over 15m
+
+  condition:
+    $mfa
+}
+Use code with caution.
