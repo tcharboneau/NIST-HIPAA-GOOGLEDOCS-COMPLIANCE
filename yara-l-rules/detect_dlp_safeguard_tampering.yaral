@@ -1,0 +1,5 @@
+rule google_workspace_dlp_safeguard_tampering {meta:author = "GitHub Repository Contributor"description = "Alerts security teams instantly if an administrator or compromised account modifies, disables, or deletes an active Data Loss Prevention safeguard."framework_mapping_hipaa = "HIPAA Security Management Process (§ 164.308(a)(1))"severity = "CRITICAL"events:// Filter for Google Workspace Admin Console activity$log.metadata.vendor_name = "Google Workspace"$log.metadata.product_name = "Google Admin"// Target administrative changes specifically related to DLP policy settings
+$log.metadata.event_type = "ADMIN_ACTIVITY"// Match common Google Admin log actions for deleting, disabling, or updating DLP rules
+// (e.g., DELETE_DLP_RULE, MODIFY_DLP_RULE, DISABLE_DLP_RULE)
+$log.metadata.method_name = /.(DLP|DATA_PROTECTION|SAFEGUARD).(DELETE|MODIFY|DISABLE|UPDATE|CHANGE).*/ i// Capture who performed the action for investigation tracking
+$actor_email = $log.principal.user.useridcondition:$log}
