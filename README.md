@@ -17,7 +17,7 @@ These artifacts are designed to give enterprise IT Administrators and Security O
 ## 📂 Repository Structure
 
 * [`yara-l-rules/`](https://github.com/tcharboneau/NIST-HIPAA-GOOGLEDOCS-COMPLIANCE/tree/main/yara-l-rules)) — Specialized detection logic for Google Security Operations (Chronicle SIEM).
-* [`dlp-policies/`](dlp-policies/) — Data Loss Prevention regex templates for the Google Workspace Admin Console.
+* [`dlp-policies/`]([dlp-policies/](https://github.com/tcharboneau/NIST-HIPAA-GOOGLEDOCS-COMPLIANCE/tree/main/dlp_policies)) — Data Loss Prevention regex templates for the Google Workspace Admin Console.
 * 
 * ### 🛡️ Core Detection Rules (YARA-L)
 Configure these rules within Google Security Operations (Chronicle) to monitor your HIPAA scope:
