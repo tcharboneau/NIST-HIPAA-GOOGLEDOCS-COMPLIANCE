@@ -1,0 +1,36 @@
+rule workspace_dlp_policy_tampering {
+  meta:
+    author = "Security Operations Center"
+    description = "Alerts security teams instantly if an administrator or compromised account modifies, disables, or deletes an active Data Loss Prevention safeguard."
+    severity = "CRITICAL"
+    mitre_attack_technique = "T1562.001" // Impair Defenses: Disable or Modify Tools
+
+  events:
+    // Filter for Google Workspace Admin Audit Logs
+    $log.metadata.vendor = "Google Workspace"
+    $log.metadata.product = "Google Admin"
+    
+    // Look for administrative changes to security or data protection policies
+    $log.metadata.event_type = "RESOURCE_UPDATE_SETTINGS"
+    
+    // Match common Google Workspace DLP policy modification events
+    (
+      $log.metadata.description = /(?i)delete.*dlp/ or
+      $log.metadata.description = /(?i)disable.*dlp/ or
+      $log.metadata.description = /(?i)modify.*dlp/ or
+      $log.metadata.description = /(?i)data_protection_rule_disabled/ or
+      $log.metadata.description = /(?i)data_protection_rule_deleted/
+    )
+
+    // Capture the administrator or account performing the modification
+    $log.principal.user.email_addresses = $admin_email
+    
+    // Capture the specific rule or policy target being altered
+    $log.target.resource.name = $policy_name
+
+  match:
+    $policy_name, $admin_email over 5m
+
+  condition:
+    $log
+}
