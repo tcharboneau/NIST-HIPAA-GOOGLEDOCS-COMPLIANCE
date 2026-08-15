@@ -1,6 +1,0 @@
-rule google_workspace_docs_hipaa_leak {meta:author = "GitHub Repository Contributor"description = "Detects HIPAA PHI identifiers (SSN, MRN, DEA) in Google Docs audit logs to ensure compliance."severity = "HIGH"events:$log.metadata.vendor_name = "Google Workspace"$log.metadata.product_name = "Google Drive"$log.metadata.event_type = "USER_RESOURCE_UPDATE"// Extract text from the log target field
-text = log.target.resource.name// HIPAA REGEX 1: Social Security Number (SSN)
-$ssn = /([0-9]{3}-[0-9]{2}-[0-9]{4}|[0-9]{9})/// HIPAA REGEX 2: Medical Record Number (MRN)
-$mrn = /(MRN[-_\s]?[0-9]{4,10})/ i// HIPAA REGEX 3: DEA Number (Drug Enforcement Administration)
-$dea = /([A-Z]{2}[0-9]{7})/ i// Trigger condition: Log matches target events AND any HIPAA regex pattern
-( $ssn or mrn or dea )condition:$log}
