@@ -76,7 +76,7 @@ Purpose: Custom regular expressions designed for the Google Admin Console to sca
 
 This repository serves as the technical companion code for an ongoing series on LinkedIn regarding enterprise healthcare security automation. Read the full operational breakdowns here:
 
-* [Article 1: Google-Based HIPAA Compliance Framework & Mapping NIST CSF 2.0](https://linkedin.com) *(Insert actual link)*
+* [Article 1: Google-Based HIPAA Compliance Framework & Mapping NIST CSF 2.0](https://www.linkedin.com/pulse/google-based-hipaa-compliance-tifanie-charboneau-bytfc/?trackingId=b2iy6OKLTd6cGFOha%2FrebA%3D%3D)
 * [Article 2: Hardening Google Admin Console for Enterprise Healthcare](https://www.linkedin.com/pulse/hardening-google-admin-console-enterprise-healthcare-charboneau-wr12c/?trackingId=DL9nQ3ogS3CaRLo7wA%2Bj0Q%3D%3D)
 
 ---
