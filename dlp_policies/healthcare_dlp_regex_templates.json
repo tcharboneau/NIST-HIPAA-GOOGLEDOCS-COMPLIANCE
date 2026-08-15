@@ -1,9 +1,0 @@
-rule google_workspace_medical_identifiers_leak {meta:author = "GitHub Repository Contributor"description = "Alerts if National Provider Identifiers (NPI), ICD-10 medical codes, or Medical Record Numbers (MRN) are detected in Google Docs log metadata."framework_mapping_hipaa = "HIPAA Protected Health Information Identifiers (§ 164.514)"severity = "HIGH"events:// Monitor Google Workspace Drive resource changes$log.metadata.vendor_name = "Google Workspace"$log.metadata.product_name = "Google Drive"$log.metadata.event_type = "USER_RESOURCE_UPDATE"// Evaluate the document name or log text field
-$text = $log.target.resource.name// REGEX 1: National Provider Identifier (NPI)
-// Matches standard 10-digit NPI provider numbers
-$npi = /\b[1-9][0-9]{9}\b/// REGEX 2: ICD-10 Medical Diagnosis Codes
-// Matches alphanumeric clinical codes (e.g., A00.0, M54.5, Z71.9)
-$icd10 = /\b[A-Z][0-9]0-9A-Z?\b/// REGEX 3: Medical Record Number (MRN)
-// Matches common hospital MRN strings
-$mrn = /(MRN[-_\s]?[0-9]{4,10})/ i// Trigger condition: Log matches a target event AND any medical identifier pattern
-( $npi or $icd10 or $mrn )condition:$log}
