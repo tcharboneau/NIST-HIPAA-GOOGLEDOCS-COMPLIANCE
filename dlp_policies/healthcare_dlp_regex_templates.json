@@ -1,0 +1,19 @@
+{
+  "google_workspace_dlp_custom_detectors": [
+    {
+      "detector_name": "National Provider Identifier (NPI)",
+      "description": "Matches standard 10-digit US National Provider Identifiers used by healthcare providers.",
+      "regex_pattern": "\\b[1-2]\\d{9}\\b"
+    },
+    {
+      "detector_name": "ICD-10-CM Medical Diagnosis Codes",
+      "description": "Matches International Classification of Diseases, 10th Revision, Clinical Modification codes.",
+      "regex_pattern": "\\b[A-Z][0-9][0-9A-Z](?:\\.[0-9A-Z]{1,4})?\\b"
+    },
+    {
+      "detector_name": "Medical Record Number (MRN)",
+      "description": "Matches common alphanumeric medical record number formats (e.g., MRN-12345 or 8-12 digits).",
+      "regex_pattern": "\\b(?:MRN[-_ ]?)?[0-9A-Z]{6,12}\\b"
+    }
+  ]
+}
