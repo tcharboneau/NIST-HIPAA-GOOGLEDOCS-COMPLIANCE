@@ -67,7 +67,7 @@ Framework: HIPAA § 164.308(a)(1) (Security Management Process)
 Purpose: Alerts security teams instantly if an administrator or compromised account modifies, disables, or deletes an active Data Loss Prevention safeguard.
 
 4. Healthcare DLP Regex Identifiers
-File: [dlp-policies/healthcare_dlp_regex_templates.json]((https://github.com/tcharboneau/NIST-HIPAA-GOOGLEDOCS-COMPLIANCE/blob/main/dlp_policies/healthcare_dlp_regex_templates.json))
+File: [dlp-policies/healthcare_dlp_regex_templates.json](https://github.com/tcharboneau/NIST-HIPAA-GOOGLEDOCS-COMPLIANCE/blob/main/dlp_policies/healthcare_dlp_regex_templates.json)
 Framework: HIPAA § 164.514 (Protected Health Information Identifiers)
 Purpose: Custom regular expressions designed for the Google Admin Console to scan Google Docs for National Provider Identifiers (NPI), ICD-10 medical codes, and Medical Record Numbers (MRN).
 ---
