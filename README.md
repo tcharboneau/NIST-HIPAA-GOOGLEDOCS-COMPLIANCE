@@ -49,26 +49,27 @@ To monitor audit logs for compliance violations after they occur:
 
 ## 🛡️ Featured Detections & Policies
 
-### 1. Unauthorized External File Sharing
-* **File:** `yara-l-rules/workspace_hipaa_external_share.yaral`
-* **Framework:** HIPAA § 164.308(a)(6)(i) (Security Incident Procedures) | NIST CSF 2.0 RS.MA-01
-* **Purpose:** Triggers a **HIGH** severity alert the moment an internal user shares a Google Doc, Sheet, or Drive file with an unapproved personal email domain (e.g., `@gmail.com`, `@yahoo.com`).
 
-### 2. Multi-Factor Authentication Deactivation
-* **File:** `yara-l-rules/workspace_mfa_disabled.yaral`
-* **Framework:** HIPAA § 164.312(a)(1) (Access Control) | NIST CSF 2.0 PR.AA-01
-* **Purpose:** Triggers a **CRITICAL** severity alert if an administrative action or user setting disables 2-Step Verification (2SV), creating an immediate identity gap.
+🛡️ Featured Detections & Policies
+1. Unauthorized External File Sharing
+File: [yara-l-rules/workspace_hipaa_external_share.yaral](yara-l-rules/workspace_hipaa_external_share.yaral)
+Framework: HIPAA § 164.308(a)(6)(i) (Security Incident Procedures) | NIST CSF 2.0 RS.MA-01
+Purpose: Triggers a HIGH severity alert the moment an internal user shares a Google Doc, Sheet, or Drive file with an unapproved personal email domain (e.g., @gmail.com, @yahoo.com).
 
-### 3. DLP Policy Tampering Detection
-* **File:** `yara-l-rules/workspace_dlp_policy_tampering.yaral`
-* **Framework:** HIPAA § 164.308(a)(1) (Security Management Process)
-* **Purpose:** Alerts security teams instantly if an administrator or compromised account modifies, disables, or deletes an active Data Loss Prevention safeguard.
+2. Multi-Factor Authentication Deactivation
+File: [yara-l-rules/workspace_mfa_disabled.yaral](yara-l-rules/workspace_mfa_disabled.yaral)
+Framework: HIPAA § 164.312(a)(1) (Access Control) | NIST CSF 2.0 PR.AA-01
+Purpose: Triggers a CRITICAL severity alert if an administrative action or user setting disables 2-Step Verification (2SV), creating an immediate identity gap.
 
-### 4. Healthcare DLP Regex Identifiers
-* **File:** `dlp-policies/healthcare_dlp_regex_templates.json`
-* **Framework:** HIPAA § 164.514 (Protected Health Information Identifiers)
-* **Purpose:** Custom regular expressions designed for the Google Admin Console to scan Google Docs for National Provider Identifiers (NPI), ICD-10 medical codes, and Medical Record Numbers (MRN).
+3. DLP Policy Tampering Detection
+File: [yara-l-rules/workspace_dlp_policy_tampering.yaral](yara-l-rules/workspace_dlp_policy_tampering.yaral)
+Framework: HIPAA § 164.308(a)(1) (Security Management Process)
+Purpose: Alerts security teams instantly if an administrator or compromised account modifies, disables, or deletes an active Data Loss Prevention safeguard.
 
+4. Healthcare DLP Regex Identifiers
+File: [dlp-policies/healthcare_dlp_regex_templates.json](dlp-policies/healthcare_dlp_regex_templates.json)
+Framework: HIPAA § 164.514 (Protected Health Information Identifiers)
+Purpose: Custom regular expressions designed for the Google Admin Console to scan Google Docs for National Provider Identifiers (NPI), ICD-10 medical codes, and Medical Record Numbers (MRN).
 ---
 
 ## 🔗 Connected Resources
