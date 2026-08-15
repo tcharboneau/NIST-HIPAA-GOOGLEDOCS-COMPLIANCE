@@ -1,0 +1,12 @@
+rule workspace_hipaa_external_share {meta:author = "Security Operations Center"description = "Triggers an alert when a Google Workspace file is shared with an unapproved external personal email domain."severity = "HIGH"mitre_attack_technique = "T1567.002" // Exfiltration Over Web Service: Exfiltration to Cloud Storageevents:// Filter for Google Workspace Drive audit logs$log.metadata.vendor = "Google Workspace"$log.metadata.product = "Google Drive"// Look for permission changes or sharing events
+$log.metadata.event_type = "USER_RESOURCE_UPDATE_PERMISSIONS"// Target the external user receiving access
+log.target.user.emailaddresses=l o g point t a r g e t point u s e r point e m a i l sub a d d r e s s e s equals𝑙𝑜𝑔.𝑡𝑎𝑟𝑔𝑒𝑡.𝑢𝑠𝑒𝑟.𝑒𝑚𝑎𝑖𝑙𝑎𝑑𝑑𝑟𝑒𝑠𝑠𝑒𝑠=external_email// Logic to isolate common personal/unapproved domains
+(
+re.regex($external_email, (?i)@gmail\.com$) or
+re.regex($external_email, (?i)@yahoo\.com$) or
+re.regex($external_email, (?i)@outlook\.com$) or
+re.regex($external_email, (?i)@hotmail\.com$) or
+re.regex($external_email, (?i)@icloud\.com$)
+)// Capture the internal user who shared the file and the file itself
+log.principal.user.emailaddresses=l o g point p r i n c i p a l point u s e r point e m a i l sub a d d r e s s e s equals𝑙𝑜𝑔.𝑝𝑟𝑖𝑛𝑐𝑖𝑝𝑎𝑙.𝑢𝑠𝑒𝑟.𝑒𝑚𝑎𝑖𝑙𝑎𝑑𝑑𝑟𝑒𝑠𝑠𝑒𝑠=actor_email
+log.target.resource.name = file_namematch:// Group alerts by the file name and the person who shared it within a 5-minute window\(file_name,\)actor_email over 5mcondition:$log
